@@ -49,3 +49,8 @@ group :test do
 end
 
 gem "active_model_serializers", "~> 0.10.12"
+
+gem 'faker'
+
+# This gem allows resetting the id of an AR table to 0. It is useful after a delete_all command. It works in Postgres and Sqlite but not in MySQL up to now.
+gem 'activerecord-reset-pk-sequence'
