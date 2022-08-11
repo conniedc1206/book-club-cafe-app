@@ -3,6 +3,7 @@ import { useNavigate,  Link as RouterLink } from 'react-router-dom'
 import { Grid, Paper, Avatar, TextField, Button, Typography, Link, Box, AppBar, Toolbar, IconButton, InputAdornment  } from '@mui/material'
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import PersonIcon from '@mui/icons-material/Person';
 import EmailIcon from '@mui/icons-material/Email';
 
 // MUI styling:
@@ -10,13 +11,15 @@ const paperStyle={padding :20, height:'70vh', width:320, margin:"20px auto", tex
 const btnstyle={margin:'20px 0'}
 
 const defaultValues = {
+    name: "",
     email: "",
     password: "",
   };
 
-const Login = () => {
+const Signup = () => {
     const [formValues, setFormValues] = useState(defaultValues);
     const [showPassword, setShowPassword] = useState(false)
+    const [errors, setErrors] = useState([]);
 
     const navigate = useNavigate()
 
@@ -33,32 +36,31 @@ const Login = () => {
         console.log(formValues)
       };
     
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const configObj = {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "Accept": "application/json",
-        },
-        body: JSON.stringify({ ...formValues }),
-        };
-        fetch("/login", configObj)
+      function handleSubmit(e){
+        e.preventDefault()
+        fetch('/users', {
+          method:'POST',
+          headers:{'Content-Type': 'application/json'},
+          body: JSON.stringify({ ...formValues }),
+        })
         .then(res => {
-        if (res.ok) {
-            return res.json();
-        }
-        throw new Error('Incorrect Username or Pawssword. Try Again!');
+            if(res.ok){
+                res.json().then(user => {
+                    console.log(user)
+                    // set current user here
+                    // setCurrentUser(user)
+                    // need to route user to their newsfeed page/home page
+                    // navigate("/newsfeed")
+                })
+            } else {
+                res.json().then(json => setErrors(Object.entries(json.errors)))
+            }
         })
-        .then((user) => {
-            console.log(user)
-        // set the state of the user
-        // setCurrentUser(user)
-        // route user to their homepage
-        // navigate("/newsfeed")
-        })
-        setFormValues(defaultValues);
-    };
+        setFormValues(defaultValues)
+      }
+
+      console.log(errors)
+
 
     return(
         <Grid
@@ -97,8 +99,25 @@ const Login = () => {
                 <form onSubmit={handleSubmit}>
                     <Grid align='center'>
                         <img src="/mediumfantasyicon.png" />
-                        <h2>Welcome Back!</h2>
+                        <h2>Sign up and start reading!</h2>
                     </Grid>
+                    <TextField 
+                        InputLabelProps={{ shrink: true }}
+                        InputProps={{
+                        startAdornment: (
+                            <InputAdornment position="start">
+                                <PersonIcon />
+                            </InputAdornment>
+                        )}}
+                        id="name"
+                        placeholder='Your Name' 
+                        name="name"
+                        type="text"
+                        value={formValues.name}
+                        onChange={handleChange} 
+                        fullWidth 
+                        required
+                        />
                     <TextField 
                         InputLabelProps={{ shrink: true }}
                         InputProps={{
@@ -108,7 +127,7 @@ const Login = () => {
                             </InputAdornment>
                         )}}
                         id="email"
-                        placeholder='Your Email' 
+                        placeholder='Email Address' 
                         name="email"
                         type="text"
                         value={formValues.email}
@@ -146,24 +165,14 @@ const Login = () => {
                         style={btnstyle} 
                         fullWidth
                         >
-                        Login
+                        SIGN UP
                     </Button>
-                    <Typography> OR
-                    </Typography>
-                    <Button 
-                        type='submit' 
-                        color='primary' 
-                        variant="contained" 
-                        style={btnstyle} 
-                        fullWidth
-                        component={RouterLink} to="/signup"
-                        >
-                        Create a new account
-                    </Button>
+                    <Typography component={RouterLink} to="/login"> Already have an account?</Typography>
+                    <Typography> {errors}</Typography>
                 </form>
             </Paper>
         </Grid>
     )
 }
 
-export default Login
+export default Signup

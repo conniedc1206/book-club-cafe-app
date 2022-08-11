@@ -2,6 +2,23 @@
 import { Routes, Route } from "react-router-dom";
 import Login from "./Login";
 import Home from "./Home";
+import Signup from "./Signup";
+import { ThemeProvider, createTheme, responsiveFontSizes  } from '@mui/material/styles';
+
+const theme = createTheme({
+  palette: {
+    type: 'light',
+    primary: {
+      main: '#00838f',
+    },
+    secondary: {
+      main: '#f50057',
+    },
+  },
+});
+
+// let fontTheme = createTheme();
+// fontTheme = responsiveFontSizes(theme);
 
 function App() {
   // //set our logged in user with login or signup
@@ -18,12 +35,13 @@ function App() {
   // }, []);
 
   return (
-    <div>
-      <Routes>
-        <Route path="login" element={<Login />} />
-        <Route path="home" element={<Home />} />
-      </Routes>
-    </div>
+      <ThemeProvider theme={theme}>
+        <Routes>
+          <Route path="login" element={<Login />} />
+          <Route path="signup" element={<Signup />} />
+          <Route path="home" element={<Home />} />
+        </Routes>
+      </ThemeProvider>
   );
 }
 
