@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Login from "./Login";
 import Home from "./Home";
 import Signup from "./Signup";
-import { ThemeProvider, createTheme, responsiveFontSizes  } from '@mui/material/styles';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
   palette: {
@@ -16,9 +16,6 @@ const theme = createTheme({
     },
   },
 });
-
-// let fontTheme = createTheme();
-// fontTheme = responsiveFontSizes(theme);
 
 function App() {
   // //set our logged in user with login or signup

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate,  Link as RouterLink } from 'react-router-dom'
-import { Grid, Paper, Avatar, TextField, Button, Typography, Link, Box, AppBar, Toolbar, IconButton, InputAdornment  } from '@mui/material'
+import { Grid, Paper, TextField, Button, Typography, Box, AppBar, Toolbar, IconButton, InputAdornment  } from '@mui/material'
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import EmailIcon from '@mui/icons-material/Email';
@@ -75,14 +75,6 @@ const Login = () => {
             <Box sx={{ display: 'flex', margin:'40px 0' }}>
                 <AppBar component="nav">
                     <Toolbar>
-                        <IconButton
-                            color="inherit"
-                            aria-label="open drawer"
-                            edge="start"
-                            sx={{ mr: 2, display: { sm: 'none' } }}
-                        >
-                        </IconButton>
-                        <img src="/fantasybookicon.png" />
                         <Typography
                         variant="h6"
                         component="div"
@@ -96,7 +88,7 @@ const Login = () => {
             <Paper elevation={10} style={paperStyle}>
                 <form onSubmit={handleSubmit}>
                     <Grid align='center'>
-                        <img src="/mediumfantasyicon.png" />
+                        <img src="/mediumfantasyicon.png" alt="icon" />
                         <h2>Welcome Back!</h2>
                     </Grid>
                     <TextField 
