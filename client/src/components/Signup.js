@@ -36,30 +36,30 @@ const Signup = () => {
         console.log(formValues)
       };
     
-      function handleSubmit(e){
-        e.preventDefault()
-        fetch('/users', {
-          method:'POST',
-          headers:{'Content-Type': 'application/json'},
-          body: JSON.stringify({ ...formValues }),
-        })
-        .then(res => {
-            if(res.ok){
-                res.json().then(user => {
-                    console.log(user)
-                    // set current user here
-                    // setCurrentUser(user)
-                    // need to route user to their newsfeed page/home page
-                    // navigate("/newsfeed")
-                })
-            } else {
-                res.json().then(json => setErrors(Object.entries(json.errors)))
-            }
-        })
-        setFormValues(defaultValues)
-      }
+    function handleSubmit(e){
+    e.preventDefault()
+    fetch('/users', {
+        method:'POST',
+        headers:{'Content-Type': 'application/json'},
+        body: JSON.stringify({ ...formValues }),
+    })
+    .then(res => {
+        if(res.ok){
+            res.json().then(user => {
+                console.log(user)
+                // set current user here
+                // setCurrentUser(user)
+                // need to route user to their newsfeed page/home page
+                // navigate("/newsfeed")
+            })
+        } else {
+            res.json().then(json => setErrors(Object.entries(json.errors)))
+        }
+    })
+    setFormValues(defaultValues)
+    }
 
-      console.log(errors)
+    console.log(errors)
 
 
     return(

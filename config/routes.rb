@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   
   resources :memberships, only: []
-  resources :book_clubs, only: []
+  resources :book_clubs, only: [:index, :show]
   resources :users, only: [:index, :create, :update, :destroy]
 
   # custom routes
