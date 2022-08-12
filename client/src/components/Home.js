@@ -3,7 +3,7 @@ import CarouselContainer from './CarouselContainer';
 import NavBar from './NavBar';
 import BookClubCard from './BookClubCard';
 import Grid from '@mui/material/Unstable_Grid2';
-import { Typography, Box } from '@mui/material';
+import { Typography, Box, Card } from '@mui/material';
 
 
 const Home = () => {
@@ -18,7 +18,7 @@ const Home = () => {
     .then(clubs => setAllBookClubs(clubs))
   }, []);
 
-  console.log(allBookClubs)
+  // console.log(allBookClubs)
   
   return (
     <>
