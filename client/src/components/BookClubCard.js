@@ -1,7 +1,6 @@
 import React from 'react'
 import { experimentalStyled as styled } from '@mui/material/styles';
 import { Paper} from "@mui/material"
-
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import ListItemText from '@mui/material/ListItemText';
@@ -64,22 +63,44 @@ const BookClubCard = ({club}) => {
               <CloseIcon />
             </IconButton>
             <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
-            {club.title} 
+            {club.club_name} 
             </Typography>
-            <Button autoFocus color="inherit" onClick={handleClose}>
-              JOIN
+            <Button autoFocus color="inherit" variant="outlined" onClick={handleClose}>
+              JOIN THIS BOOK CLUB
             </Button>
           </Toolbar>
         </AppBar>
         <List>
-          <ListItem button>
-            <ListItemText primary="Phone ringtone" secondary="Titania" />
+          <ListItem>
+            <img 
+            src={club.image} 
+            alt="books"
+            style={{ maxHeight: "100px", flexShrink: 1, display: { xs: 'flex', md: 'none' }}}
+            />
+            <ListItemText primary={club.title}  secondary={club.author}  />
+            <Button color="inherit" variant="outlined">
+              BUY THIS BOOK
+            </Button>
           </ListItem>
           <Divider />
-          <ListItem button>
+          <ListItem>
             <ListItemText
-              primary="Default notification ringtone"
-              secondary="Tethys"
+              primary="Description"
+              secondary={club.desc} 
+            />
+          </ListItem>
+          <Divider />
+          <ListItem>
+            <ListItemText
+              primary="Genre"
+              secondary={club.genre} 
+            />
+          </ListItem>
+          <Divider />
+          <ListItem>
+            <ListItemText
+              primary="F&P Reading Level"
+              secondary={club.reading_level} 
             />
           </ListItem>
         </List>

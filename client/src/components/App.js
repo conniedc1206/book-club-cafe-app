@@ -1,4 +1,4 @@
-// import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { Routes, Route } from "react-router-dom";
 import Login from "./Login";
 import Home from "./Home";
@@ -19,21 +19,19 @@ const theme = createTheme({
 
 function App() {
   // //set our logged in user with login or signup
-  // const [currentUser, setCurrentUser] = useState(false) 
-  // //keep track of our logged in user's catpanions during current session
+  const [currentUser, setCurrentUser] = useState(false) 
 
-  // // fetch the logged in user when app loads if there is a user
-  // useEffect(() => {
-  //   fetch("/me")
-  //   .then(res => res.json())
-  //   .then((user) => {
-  //     setCurrentUser(user)
-  //   })
-  // }, []);
-
-  console.log("App mounted")
-
+  // fetch the logged in user when app loads if there is a user
+  useEffect(() => {
+    fetch("/me")
+    .then(res => res.json())
+    .then((user) => {
+      console.log(user)
+    })
+  }, []);
+  
   return (
+
       <ThemeProvider theme={theme}>
         <Routes>
           <Route path="login" element={<Login />} />
@@ -41,6 +39,7 @@ function App() {
           <Route path="home" element={<Home />} />
         </Routes>
       </ThemeProvider>
+
   );
 }
 
