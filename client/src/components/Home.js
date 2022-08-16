@@ -3,13 +3,11 @@ import CarouselContainer from './CarouselContainer';
 import NavBar from './NavBar';
 import BookClubCard from './BookClubCard';
 import Grid from '@mui/material/Unstable_Grid2';
-import { Typography, Box, Card } from '@mui/material';
+import { Typography, Box } from '@mui/material';
 
 
-const Home = () => {
+const Home = ({currentUser}) => {
   const [allBookClubs, setAllBookClubs] = useState([])
-
-  console.log("Home mounted")
 
   // requesting all book_clubs
   useEffect(() => {
@@ -18,11 +16,9 @@ const Home = () => {
     .then(clubs => setAllBookClubs(clubs))
   }, []);
 
-  // console.log(allBookClubs)
-  
   return (
     <>
-      <NavBar />
+      <NavBar currentUser={currentUser}/>
       <CarouselContainer />
       <Box sx={{ flexGrow: 1 }}>
         <Typography m={2} sx={{ textAlign: 'center', fontSize: 24 }}>Join A New Book Club!</Typography>

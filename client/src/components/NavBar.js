@@ -1,12 +1,20 @@
 import React, { useState } from 'react';
 import { useNavigate,  Link as RouterLink } from 'react-router-dom'
-import { AppBar, Box, Toolbar, IconButton, Menu, Container, Avatar, Button, Tooltip, MenuItem, Typography, Icon } from "@mui/material"
+import { AppBar, Box, Toolbar, IconButton, Menu, Container, Avatar, Button, Tooltip, MenuItem, Typography, Icon, Link } from "@mui/material"
 import MenuIcon from '@mui/icons-material/Menu';
 
-const pages = ['Explore', 'My Book Clubs'];
-const settings = ['Account', 'Logout'];
+const pages = [
+  {
+    name: 'Explore',
+    link: '/home'
+  },
+  {
+    name: 'My Book Clubs',
+    link: '/mybookclubs'
+  },
+];
 
-const NavBar = () => {
+const NavBar = ({currentUser}) => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -23,6 +31,16 @@ const NavBar = () => {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+  };
+
+  // logout button
+  const handleLogOut = () => {
+  // DELETE `/logout`
+  fetch('/logout', {
+    method: 'DELETE'
+  })
+  // setCurrentUser(false)
+  // navigate("/")
   };
   
   return (
@@ -62,8 +80,8 @@ const NavBar = () => {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                <MenuItem key={page.name} onClick={handleCloseNavMenu}>
+                  <Link underline="none" color="inherit" textAlign="center" component={RouterLink} to={page.link}>{page.name}</Link>
                 </MenuItem>
               ))}
             </Menu>
@@ -72,11 +90,11 @@ const NavBar = () => {
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
-                key={page}
+                key={page.name}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                {page}
+                <Link underline="none" color="inherit" textAlign="center" component={RouterLink} to={page.link}>{page.name}</Link>
               </Button>
             ))}
           </Box>
@@ -84,7 +102,7 @@ const NavBar = () => {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar alt="current user" src="" />
               </IconButton>
             </Tooltip>
             <Menu
@@ -103,11 +121,9 @@ const NavBar = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
+              <MenuItem component={RouterLink} to="/myaccount" onClick={() => {
+              setAnchorElUser(null)}}>My account</MenuItem>
+              <MenuItem component={RouterLink} to="/" onClick={handleLogOut}>Logout</MenuItem>
             </Menu>
           </Box>
         </Toolbar>

@@ -13,6 +13,7 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import CloseIcon from '@mui/icons-material/Close';
 import Slide from '@mui/material/Slide';
+import Link from '@mui/material/Link';
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -42,8 +43,8 @@ const BookClubCard = ({club}) => {
       <Item variant="outlined" onClick={handleClickOpen}>
           <img 
           src={club.image} 
-          alt="books"
-          style={{ maxHeight: "200px", flexShrink: 1, display: { xs: 'flex', md: 'none' }}}
+          alt="book cover"
+          style={{ maxHeight: "200px", maxWidth: '90%', flexShrink: 1, display: { xs: 'flex', md: 'none' }}}
           />
       </Item>
       <Dialog
@@ -65,22 +66,21 @@ const BookClubCard = ({club}) => {
             <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
             {club.club_name} 
             </Typography>
-            <Button autoFocus color="inherit" variant="outlined" onClick={handleClose}>
-              JOIN THIS BOOK CLUB
-            </Button>
+            
           </Toolbar>
         </AppBar>
-        <List>
+        <List >
           <ListItem>
             <img 
             src={club.image} 
             alt="books"
             style={{ maxHeight: "100px", flexShrink: 1, display: { xs: 'flex', md: 'none' }}}
             />
-            <ListItemText primary={club.title}  secondary={club.author}  />
-            <Button color="inherit" variant="outlined">
-              BUY THIS BOOK
-            </Button>
+            <ListItemText sx={{ ml: 2 }}
+              primary={club.title}  
+              secondary={club.author}  
+            />
+            <Button color="primary" variant="contained" href={club.url} target="_blank" rel="noopener noreferrer">BUY THIS BOOK</Button>
           </ListItem>
           <Divider />
           <ListItem>
@@ -104,6 +104,9 @@ const BookClubCard = ({club}) => {
             />
           </ListItem>
         </List>
+        <Button size="medium" color="secondary" variant="contained" onClick={handleClose}>
+              JOIN THIS BOOK CLUB
+        </Button>
     </Dialog>
   </div>
   )
