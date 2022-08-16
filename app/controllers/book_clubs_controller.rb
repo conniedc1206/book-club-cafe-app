@@ -10,4 +10,6 @@ class BookClubsController < ApplicationController
         bookclub = BookClub.find(params[:id])
         render json: bookclub, status: :ok
     end
+
+    
 end

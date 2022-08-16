@@ -14,11 +14,11 @@ const defaultValues = {
     password: "",
   };
 
-const Login = () => {
+const Login = ({setCurrentUser, setUserBookClubs}) => {
     const [formValues, setFormValues] = useState(defaultValues);
     const [showPassword, setShowPassword] = useState(false)
 
-    // const navigate = useNavigate()
+    const navigate = useNavigate()
 
     const handleClickShowPassword = () => {
         setShowPassword((currentState) => !currentState);
@@ -30,7 +30,6 @@ const Login = () => {
           ...formValues,
           [name]: value,
         });
-        console.log(formValues)
       };
     
     const handleSubmit = (e) => {
@@ -45,17 +44,20 @@ const Login = () => {
         };
         fetch("/login", configObj)
         .then(res => {
-        if (res.ok) {
-            return res.json();
-        }
-        throw new Error('Incorrect Username or Pawssword. Try Again!');
-        })
+            if (res.ok) {
+                return res.json();
+            }
+            throw new Error('Incorrect Email or Password. Try Again!');
+            })
         .then((user) => {
-            console.log(user)
-        // set the state of the user
-        // setCurrentUser(user)
-        // route user to their homepage
-        // navigate("/newsfeed")
+            // set the state of the user
+            setCurrentUser(user)
+            setUserBookClubs(user.book_clubs)
+            // route user to their home page
+            navigate("/home")
+        })
+        .catch((error) => {
+        alert(error)
         })
         setFormValues(defaultValues);
     };

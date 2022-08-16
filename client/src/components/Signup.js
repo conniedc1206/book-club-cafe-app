@@ -159,7 +159,7 @@ const Signup = () => {
                         >
                         SIGN UP
                     </Button>
-                    <Typography component={RouterLink} to="/login"> Already have an account?</Typography>
+                    <Typography component={RouterLink} to="/"> Already have an account?</Typography>
                     <Typography> {errors}</Typography>
                 </form>
             </Paper>
