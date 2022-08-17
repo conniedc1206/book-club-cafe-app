@@ -4,6 +4,7 @@ import Login from "./Login";
 import Home from "./Home";
 import Signup from "./Signup";
 import MyBookClubs from "./MyBookClubs"
+import MyAccount from './MyAccount';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
@@ -33,19 +34,21 @@ function App() {
       setUserBookClubs(user.book_clubs)
     })
   }, []);
-  console.log(currentUser)
+
+  // callback functions for userBookClubs CRUD
+  const addBookClub = (newBookClub) => setUserBookClubs(bookclubs => [...bookclubs, newBookClub])
+
   console.log(userBookClubs)
+  console.log(currentUser)
 
-  console.log("App Mounted")
-  
   return (
-
       <ThemeProvider theme={theme}>
         <Routes>
           <Route path="/" element={<Login setCurrentUser={setCurrentUser} setUserBookClubs={setUserBookClubs}/>} />
           <Route path="signup" element={<Signup />} />
-          <Route path="home" element={<Home currentUser={currentUser}/>} />
+          <Route path="home" element={<Home currentUser={currentUser} addBookClub={addBookClub}/>} />
           <Route path="mybookclubs" element={<MyBookClubs userBookClubs={userBookClubs}/>} />
+          <Route path="myaccount" element={<MyAccount currentUser={currentUser}/>} />
         </Routes>
       </ThemeProvider>
 

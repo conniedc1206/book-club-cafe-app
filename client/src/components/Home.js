@@ -6,7 +6,7 @@ import Grid from '@mui/material/Unstable_Grid2';
 import { Typography, Box } from '@mui/material';
 
 
-const Home = ({currentUser}) => {
+const Home = ({currentUser, addBookClub}) => {
   const [allBookClubs, setAllBookClubs] = useState([])
 
   // requesting all book_clubs
@@ -25,7 +25,7 @@ const Home = ({currentUser}) => {
         <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 16 }}>
           {allBookClubs.map((club) => (
             <Grid xs={2} sm={4} md={4} key={club.id}>
-              <BookClubCard club={club}/>
+              <BookClubCard club={club} currentUser={currentUser} addBookClub={addBookClub}/>
             </Grid>
           ))}
         </Grid>

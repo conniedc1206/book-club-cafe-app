@@ -13,7 +13,6 @@ const Item = styled(Paper)(({ theme }) => ({
     color: theme.palette.text.secondary,
 }));
 
-
 const MyBookClubs = ({userBookClubs}) => {
     //state for events of user
 
@@ -26,21 +25,22 @@ const MyBookClubs = ({userBookClubs}) => {
     <>
         <NavBar />
         <Typography m={2} sx={{ textAlign: 'center', fontSize: 24 }}>My Book Clubs</Typography>
-        <Box sx={{ flexGrow: 1 }}>
-        <Grid container spacing={2}>
-          {/* container for list of book clubs that user joined */}
-          {userBookClubs.map((club) => (
-            <Grid xs={6} md={8}>
-              <ClubEventCard key={club.id}club={club}/>
+        <Box sx={{ display: 'flex', p: 1, bgcolor: 'background.paper', borderRadius: 1 }}>
+          <Grid sx={{ flexGrow: 1, margin: 1 }}>
+            {/* container for list events that user joined */}
+            <Grid xs={6} md={4} sx={{ width: '100%'}}>  
+              <Item>Upcoming Events</Item>
+              <Item>Upcoming Events</Item>
+              <Item>Upcoming Events</Item>
             </Grid>
-          ))}
-          {/* container for list events that user joined */}
-          <Grid xs={6} md={4} sx={{ width: '100%'}}>  
-            <Item>Upcoming Events</Item>
-            <Item>Upcoming Events</Item>
-            <Item>Upcoming Events</Item>
+            
+            {/* container for list of book clubs that user joined */}
+            {userBookClubs.map((club) => (
+              <Grid xs={6} md={8}>
+                <ClubEventCard key={club.id} club={club}/>
+              </Grid>
+            ))}
           </Grid>
-        </Grid>
         </Box>
     </>
   )

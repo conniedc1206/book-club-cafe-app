@@ -27,7 +27,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const BookClubCard = ({club}) => {
+const BookClubCard = ({club, currentUser, addBookClub}) => {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -37,6 +37,26 @@ const BookClubCard = ({club}) => {
   const handleClose = () => {
     setOpen(false);
   };
+
+  //current user joins selected book club
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    //find the book club's id that is being clicked on
+    console.log(club.id)
+    
+    const configObj = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+        },
+        body: JSON.stringify({user_id: currentUser.id, book_club_id: club.id}),
+      };
+      fetch("/memberships", configObj)
+      .then(res => res.json())
+      .then((newBookClub) => addBookClub(newBookClub))
+    setOpen(false)
+}
 
   return (
     <div>
@@ -104,7 +124,7 @@ const BookClubCard = ({club}) => {
             />
           </ListItem>
         </List>
-        <Button size="medium" color="secondary" variant="contained" onClick={handleClose}>
+        <Button size="medium" color="secondary" variant="contained" onClick={handleSubmit}>
               JOIN THIS BOOK CLUB
         </Button>
     </Dialog>

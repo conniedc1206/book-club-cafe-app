@@ -6,6 +6,11 @@ class UsersController < ApplicationController
         render json: users, status: :ok
     end
 
+    def show
+        user = User.find(params[:id])
+        render json: user, status: :ok
+    end
+
     # POST "/users": Fetch this route to create a user (see user_params to know what's required in the form)
     def create
         user = User.create!(user_params)

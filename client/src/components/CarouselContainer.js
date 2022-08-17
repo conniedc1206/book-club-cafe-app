@@ -20,7 +20,6 @@ const CarouselContainer = () => {
       }
     ];
 
-
   return (
       <div>
           <div style={{ textAlign: "center" }}>

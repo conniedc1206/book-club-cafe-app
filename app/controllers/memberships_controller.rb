@@ -1,8 +1,17 @@
 class MembershipsController < ApplicationController
+    def index
+        memberships = Membership.all
+        render json: memberships, status: :ok
+    end
+    
     # POST /memberships: when current user joins a bookclub
     def create
-        membership = Membership.create!(membership_params)
-        render json: membership, status: :created
+        if (current_user.memberships.find_by(book_club_id: params[:book_club_id]))
+            render json: { error: "You are already a member of this book club" }, status: :forbidden
+        else
+            membership = Membership.create!(membership_params)
+            render json: membership, status: :created
+        end
     end
 
     # DELETE /memberships/:id: when current user leaves a bookclub
