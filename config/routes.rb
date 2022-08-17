@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   
-  resources :memberships, only: [:create, :destroy]
+  resources :memberships, only: [:index, :create, :destroy]
   resources :book_clubs, only: [:index, :show]
-  resources :users, only: [:index, :create, :update, :destroy]
+  resources :users, only: [:index, :show, :create, :update, :destroy]
 
   # custom routes
   post "/login", to: "sessions#create"
