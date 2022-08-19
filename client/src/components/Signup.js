@@ -9,6 +9,7 @@ import EmailIcon from '@mui/icons-material/Email';
 // MUI styling:
 const paperStyle={padding :20, height:'70vh', width:320, margin:"20px auto", textAlign: "center", boxShadow: "4px 4px 4px rgba(0, 0, 0, 0.25)", borderRadius: "25px"}
 const btnstyle={margin:'20px 0'}
+const txtfieldstyle = { marginTop: "2.5%", marginBottom: "2.5%" }
 
 const defaultValues = {
     name: "",
@@ -16,7 +17,7 @@ const defaultValues = {
     password: "",
   };
 
-const Signup = () => {
+const Signup = ({setCurrentUser}) => {
     const [formValues, setFormValues] = useState(defaultValues);
     const [showPassword, setShowPassword] = useState(false)
     const [errors, setErrors] = useState([]);
@@ -48,9 +49,9 @@ const Signup = () => {
             res.json().then(user => {
                 console.log(user)
                 // set current user here
-                // setCurrentUser(user)
+                setCurrentUser(user)
                 // need to route user to their newsfeed page/home page
-                // navigate("/newsfeed")
+                navigate("/home")
             })
         } else {
             res.json().then(json => setErrors(Object.entries(json.errors)))
@@ -58,9 +59,6 @@ const Signup = () => {
     })
     setFormValues(defaultValues)
     }
-
-    console.log(errors)
-
 
     return(
         <Grid
@@ -94,6 +92,7 @@ const Signup = () => {
                         <h2>Sign up and start reading!</h2>
                     </Grid>
                     <TextField 
+                        style={txtfieldstyle}
                         InputLabelProps={{ shrink: true }}
                         InputProps={{
                         startAdornment: (
@@ -111,6 +110,7 @@ const Signup = () => {
                         required
                         />
                     <TextField 
+                        style={txtfieldstyle}
                         InputLabelProps={{ shrink: true }}
                         InputProps={{
                         startAdornment: (
@@ -128,6 +128,7 @@ const Signup = () => {
                         required
                         />
                     <TextField 
+                        style={txtfieldstyle}
                         InputLabelProps={{ shrink: true }}
                         InputProps={{
                         startAdornment: (
@@ -160,7 +161,7 @@ const Signup = () => {
                         SIGN UP
                     </Button>
                     <Typography component={RouterLink} to="/"> Already have an account?</Typography>
-                    <Typography> {errors}</Typography>
+                    <Typography>{errors}</Typography>
                 </form>
             </Paper>
         </Grid>

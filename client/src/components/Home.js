@@ -6,7 +6,7 @@ import Grid from '@mui/material/Unstable_Grid2';
 import { Typography, Box } from '@mui/material';
 
 
-const Home = ({currentUser, addBookClub}) => {
+const Home = ({currentUser, addUserBookClub, userBookClubs}) => {
   const [allBookClubs, setAllBookClubs] = useState([])
 
   // requesting all book_clubs
@@ -16,6 +16,14 @@ const Home = ({currentUser, addBookClub}) => {
     .then(clubs => setAllBookClubs(clubs))
   }, []);
 
+  // Removing multiple items: filter through allBookClubs where bookclub.id !== currentUser's bookclubs (to exclude ones that already joined)
+  let bookClubIds = []
+  const pluck = (arr, key) => arr.map(i => i[key]);
+  bookClubIds = pluck(userBookClubs, 'id')
+
+  let filteredClubs = []
+  filteredClubs = allBookClubs.filter((item) => !bookClubIds.includes(item.id))
+
   return (
     <>
       <NavBar currentUser={currentUser}/>
@@ -23,9 +31,9 @@ const Home = ({currentUser, addBookClub}) => {
       <Box sx={{ flexGrow: 1 }}>
         <Typography m={2} sx={{ textAlign: 'center', fontSize: 24 }}>Join A New Book Club!</Typography>
         <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 16 }}>
-          {allBookClubs.map((club) => (
+          {filteredClubs?.map((club) => (
             <Grid xs={2} sm={4} md={4} key={club.id}>
-              <BookClubCard club={club} currentUser={currentUser} addBookClub={addBookClub}/>
+              <BookClubCard club={club} currentUser={currentUser} addUserBookClub={addUserBookClub}/>
             </Grid>
           ))}
         </Grid>

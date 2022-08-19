@@ -8,13 +8,14 @@ import EmailIcon from '@mui/icons-material/Email';
 // MUI styling:
 const paperStyle={padding :20, height:'70vh', width:320, margin:"20px auto", textAlign: "center", boxShadow: "4px 4px 4px rgba(0, 0, 0, 0.25)", borderRadius: "25px"}
 const btnstyle={margin:'20px 0'}
+const txtfieldstyle = { marginTop: "2.5%", marginBottom: "2.5%" }
 
 const defaultValues = {
     email: "",
     password: "",
   };
 
-const Login = ({setCurrentUser, setUserBookClubs}) => {
+const Login = ({setCurrentUser}) => {
     const [formValues, setFormValues] = useState(defaultValues);
     const [showPassword, setShowPassword] = useState(false)
 
@@ -52,7 +53,6 @@ const Login = ({setCurrentUser, setUserBookClubs}) => {
         .then((user) => {
             // set the state of the user
             setCurrentUser(user)
-            setUserBookClubs(user.book_clubs)
             // route user to their home page
             navigate("/home")
         })
@@ -94,22 +94,23 @@ const Login = ({setCurrentUser, setUserBookClubs}) => {
                         <h2>Welcome Back!</h2>
                     </Grid>
                     <TextField 
-                        InputLabelProps={{ shrink: true }}
-                        InputProps={{
-                        startAdornment: (
-                            <InputAdornment position="start">
-                                <EmailIcon />
-                            </InputAdornment>
-                        )}}
-                        id="email"
-                        placeholder='Your Email' 
-                        name="email"
-                        type="text"
-                        value={formValues.email}
-                        onChange={handleChange} 
-                        fullWidth 
-                        required
-                        />
+                    style={txtfieldstyle}
+                    InputLabelProps={{ shrink: true }}
+                    InputProps={{
+                    startAdornment: (
+                        <InputAdornment position="start">
+                            <EmailIcon />
+                        </InputAdornment>
+                    )}}
+                    id="email"
+                    placeholder='Your Email' 
+                    name="email"
+                    type="text"
+                    value={formValues.email}
+                    onChange={handleChange} 
+                    fullWidth 
+                    required
+                    />
                     <TextField 
                         InputLabelProps={{ shrink: true }}
                         InputProps={{

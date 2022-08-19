@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { experimentalStyled as styled } from '@mui/material/styles';
 import { Paper} from "@mui/material"
 import Button from '@mui/material/Button';
@@ -27,8 +28,10 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const BookClubCard = ({club, currentUser, addBookClub}) => {
-  const [open, setOpen] = React.useState(false);
+const BookClubCard = ({club, currentUser, addUserBookClub}) => {
+  const [open, setOpen] = useState(false);
+
+  const navigate = useNavigate()
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -42,7 +45,7 @@ const BookClubCard = ({club, currentUser, addBookClub}) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     //find the book club's id that is being clicked on
-    console.log(club.id)
+    // console.log(club.id)
     
     const configObj = {
         method: "POST",
@@ -54,7 +57,10 @@ const BookClubCard = ({club, currentUser, addBookClub}) => {
       };
       fetch("/memberships", configObj)
       .then(res => res.json())
-      .then((newBookClub) => addBookClub(newBookClub))
+      .then((newBookClub) => {
+        addUserBookClub(newBookClub)
+        navigate("/mybookclubs")
+      })
     setOpen(false)
 }
 
@@ -125,7 +131,7 @@ const BookClubCard = ({club, currentUser, addBookClub}) => {
           </ListItem>
         </List>
         <Button size="medium" color="secondary" variant="contained" onClick={handleSubmit}>
-              JOIN THIS BOOK CLUB
+        JOIN THIS BOOK CLUB
         </Button>
     </Dialog>
   </div>
