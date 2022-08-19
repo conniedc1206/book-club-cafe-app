@@ -10,7 +10,7 @@ class MembershipsController < ApplicationController
             render json: { error: "You are already a member of this book club" }, status: :forbidden
         else
             membership = Membership.create!(membership_params)
-            render json: membership, status: :created
+            render json: membership.book_club, status: :created
         end
     end
 

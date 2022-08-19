@@ -13,13 +13,10 @@ const Item = styled(Paper)(({ theme }) => ({
     color: theme.palette.text.secondary,
 }));
 
-const MyBookClubs = ({userBookClubs}) => {
+const MyBookClubs = ({currentUser, userBookClubs, deleteUserBookClub}) => {
     //state for events of user
 
     //fetch event of user
-
-    console.log("My Book Clubs Mounted")
-    console.log(userBookClubs)
   
     return (
     <>
@@ -37,7 +34,7 @@ const MyBookClubs = ({userBookClubs}) => {
             {/* container for list of book clubs that user joined */}
             {userBookClubs.map((club) => (
               <Grid xs={6} md={8}>
-                <ClubEventCard key={club.id} club={club}/>
+                <ClubEventCard key={club.id} club={club} deleteUserBookClub={deleteUserBookClub} currentUser={currentUser}/>
               </Grid>
             ))}
           </Grid>

@@ -18,6 +18,7 @@ test("renders without any errors", () => {
     errorSpy.mockRestore();
 });
 
+//assertion type #1: is this element in the document?
 //renders 'Edit Profile'
 test("renders 'Edit Profile' in header", () => {
     render(<MyAccount />);

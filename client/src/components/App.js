@@ -22,7 +22,7 @@ const theme = createTheme({
 function App() {
   // set our logged in user with login or signup
   const [currentUser, setCurrentUser] = useState(false) 
-  //state for book clubs of current user
+  //state for bookclubs of current user
   const [userBookClubs, setUserBookClubs] = useState([])
 
   // fetch the logged in user when app loads if there is a user
@@ -35,19 +35,24 @@ function App() {
     })
   }, []);
 
-  // callback functions for userBookClubs CRUD
-  const addBookClub = (newBookClub) => setUserBookClubs(bookclubs => [...bookclubs, newBookClub])
-
-  console.log(userBookClubs)
-  console.log(currentUser)
+// callback functions for membership CRUD
+  const addUserBookClub = (newBookClub) => setUserBookClubs(bookclubs => [...bookclubs, newBookClub])
+  const deleteUserBookClub = (id) => setUserBookClubs(current => current.filter(p => p.id !== id)) 
 
   return (
       <ThemeProvider theme={theme}>
         <Routes>
-          <Route path="/" element={<Login setCurrentUser={setCurrentUser} setUserBookClubs={setUserBookClubs}/>} />
-          <Route path="signup" element={<Signup />} />
-          <Route path="home" element={<Home currentUser={currentUser} addBookClub={addBookClub}/>} />
-          <Route path="mybookclubs" element={<MyBookClubs userBookClubs={userBookClubs}/>} />
+          <Route path="/" element={<Login setCurrentUser={setCurrentUser}/>} />
+          <Route path="signup" element={<Signup setCurrentUser={setCurrentUser} />} />
+          <Route path="home" element={
+            <Home 
+              currentUser={currentUser} 
+              addUserBookClub={addUserBookClub}
+              userBookClubs={userBookClubs}
+              />
+            } 
+          />
+          <Route path="mybookclubs" element={<MyBookClubs currentUser={currentUser} userBookClubs={userBookClubs} deleteUserBookClub={deleteUserBookClub}/>} />
           <Route path="myaccount" element={<MyAccount currentUser={currentUser}/>} />
         </Routes>
       </ThemeProvider>
