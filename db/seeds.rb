@@ -162,4 +162,21 @@ puts "Adding Memberships..."
     )
 end
 
+puts "Adding Events..."
+20.times do
+    Event.create(
+        name: Faker::Lorem.sentence(word_count: 3),
+        date: Faker::Time.forward(days: 30,  period: :evening, format: :long),
+        book_club_id: BookClub.ids.sample
+    )
+end
+
+puts "Adding Attendances..."
+10.times do
+    Attendance.create(
+        user_id: User.ids.sample,
+        event_id: Event.ids.sample
+    )
+end
+
 puts "Done seeding!"

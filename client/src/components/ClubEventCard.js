@@ -18,20 +18,18 @@ const ClubEventCard = ({club, currentUser, deleteUserBookClub}) => {
   useEffect(() => {
     fetch("/memberships")
     .then(res => res.json())
-    .then(membership => setAllMemberships(membership))
+    .then(memberships => setAllMemberships(memberships))
   }, []);
-  
-  console.log(allMemberships)
+
+  console.log(club)
   
   //DELETE
   function handleDeleteClick () {
-    // backend: find the membership obj where clicked club's id=club id
+    // find the membership obj where clicked club's id=club id
+    // deletebookclub from userbookclub state
     let membershipobj = allMemberships.find((obj) => obj.book_club.id === club.id && obj.user.id === currentUser.id)
-
-    // frontend: deletebookclub from userbookclub state
-    console.log(club.id)
-    console.log(membershipobj.id)
-
+    // console.log(club.id)
+    // console.log(membershipobj.id)
     fetch(`/memberships/${membershipobj.id}`, {
       method: 'DELETE'
     })
@@ -45,7 +43,10 @@ const ClubEventCard = ({club, currentUser, deleteUserBookClub}) => {
         src={club.image}
         style={{ maxHeight: "200px", maxWidth: '100%'}}
         />
-        <Typography>Title</Typography>
+        <Typography>{club.title}</Typography>
+        
+        {/* render each book club's events in a stack with a RSVP button */}
+        {/* once user rsvp to event, will appear in "your upcoming events" box on top */}
         <Box
         sx={{ display: 'block', p: 1, margin: 'auto', border: 2 }}
         variant="outlined"
