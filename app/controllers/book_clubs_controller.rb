@@ -11,5 +11,4 @@ class BookClubsController < ApplicationController
         render json: bookclub, status: :ok
     end
 
-    
 end

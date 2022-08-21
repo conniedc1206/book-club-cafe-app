@@ -17,7 +17,7 @@ const MyBookClubs = ({currentUser, userBookClubs, deleteUserBookClub}) => {
     //state for events of user
 
     //fetch event of user
-  
+
     return (
     <>
         <NavBar />

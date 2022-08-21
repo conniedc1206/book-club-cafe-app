@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_10_172850) do
+ActiveRecord::Schema.define(version: 2022_08_21_164310) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "attendances", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "event_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["event_id"], name: "index_attendances_on_event_id"
+    t.index ["user_id"], name: "index_attendances_on_user_id"
+  end
 
   create_table "book_clubs", force: :cascade do |t|
     t.string "club_name"
@@ -26,6 +35,15 @@ ActiveRecord::Schema.define(version: 2022_08_10_172850) do
     t.string "reading_level"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.string "name"
+    t.datetime "date"
+    t.bigint "book_club_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["book_club_id"], name: "index_events_on_book_club_id"
   end
 
   create_table "memberships", force: :cascade do |t|
@@ -47,6 +65,9 @@ ActiveRecord::Schema.define(version: 2022_08_10_172850) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "attendances", "events"
+  add_foreign_key "attendances", "users"
+  add_foreign_key "events", "book_clubs"
   add_foreign_key "memberships", "book_clubs"
   add_foreign_key "memberships", "users"
 end

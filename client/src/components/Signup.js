@@ -47,7 +47,6 @@ const Signup = ({setCurrentUser}) => {
     .then(res => {
         if(res.ok){
             res.json().then(user => {
-                console.log(user)
                 // set current user here
                 setCurrentUser(user)
                 // need to route user to their newsfeed page/home page

@@ -19,7 +19,7 @@ class SessionsController < ApplicationController
     # GET '/me': get logged in user's object
     def show
         user = User.find(session[:user_id])
-        render json: user, serializer: UserShowSerializer, status: :ok
+        render json: user, status: :ok
     end
 
 end
