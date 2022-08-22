@@ -2,8 +2,8 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show, :create, :update, :destroy]
   resources :book_clubs, only: [:index, :show]
   resources :memberships, only: [:index, :create, :destroy]
-  resources :events, only: [:index]
-  resources :attendances, only: [:index]
+  resources :events, only: [:index, :create, :destroy]
+  resources :attendances, only: [:index, :create, :destroy]
   
 
   # custom routes
