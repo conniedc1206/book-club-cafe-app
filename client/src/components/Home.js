@@ -5,9 +5,10 @@ import BookClubCard from './BookClubCard';
 import Grid from '@mui/material/Unstable_Grid2';
 import { Typography, Box } from '@mui/material';
 
-
 const Home = ({currentUser, addUserBookClub, userBookClubs}) => {
   const [allBookClubs, setAllBookClubs] = useState([])
+  
+  console.log(currentUser)
 
   // requesting all book_clubs
   useEffect(() => {
@@ -29,7 +30,7 @@ const Home = ({currentUser, addUserBookClub, userBookClubs}) => {
       <NavBar currentUser={currentUser}/>
       <CarouselContainer />
       <Box sx={{ flexGrow: 1 }}>
-        <Typography aria-role='heading' m={2} sx={{ textAlign: 'center', fontSize: 24 }}>Join A New Book Club!</Typography>
+        <Typography m={2} sx={{ textAlign: 'center', fontSize: 24 }}>Join A New Book Club!</Typography>
         <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 16 }}>
           {filteredClubs?.map((club) => (
             <Grid xs={2} sm={4} md={4} key={club.id}>

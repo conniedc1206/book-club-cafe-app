@@ -22,4 +22,10 @@ class SessionsController < ApplicationController
         render json: user, status: :ok
     end
 
+    # GET '/myevents': get logged in user's object
+    def myevents
+        user = User.find(session[:user_id])
+        render json: user.events, status: :ok
+    end
+
 end

@@ -11,7 +11,7 @@ const Item = styled(Paper)(({ theme }) => ({
     color: theme.palette.text.secondary,
 }));
 
-const ClubEventCard = ({club, currentUser, deleteUserBookClub, addUserEvent}) => {
+const ClubEventCard = ({club, currentUser, deleteUserBookClub, addUserEvent, deleteUserEvent}) => {
   const [allMemberships, setAllMemberships] = useState([])
 
   let today = new Date().toLocaleDateString()
@@ -42,20 +42,22 @@ const ClubEventCard = ({club, currentUser, deleteUserBookClub, addUserEvent}) =>
     return a - b;
   })
   // console.table(sortedEvents)
-  
+
   return (
     <Item variant="outlined">
-        <img 
-        src={club.image}
-        alt={club.title}
-        style={{ maxHeight: "200px", maxWidth: '100%'}}
-        />
+        <a href={club.url} target="_blank" rel="noopener noreferrer">
+          <img 
+          src={club.image}
+          alt={club.title}
+          style={{ maxHeight: "200px", maxWidth: '100%'}}
+          />
+        </a>
         <Typography>{club.club_name}: {club.title}</Typography>
         
         {/* render each book club's events in a stack with a RSVP button */}
         {/* once user rsvp to event, will appear in "your upcoming events" box on top */}
         {/* ONLY render events that are in the future compared to today, not in the past */}
-        {sortedEvents.map((event) => ( (event.date) <= today ? <EventCard key={event.id} event={event} currentUser={currentUser} addUserEvent={addUserEvent}/> : null )) }
+        {sortedEvents.map((event) => ( (event.date) <= today ? <EventCard key={event.id} event={event} currentUser={currentUser} addUserEvent={addUserEvent} deleteUserEvent={deleteUserEvent}/> : null )) }
         <Button sx={{ mt:3 }} size="medium" color="secondary" variant="contained" onClick={handleDeleteClick}>
               LEAVE THIS BOOK CLUB
         </Button>
