@@ -81,7 +81,7 @@ const MyAccount = ({ currentUser }) => {
                     </InputAdornment>
                 )}}
                 id="email"
-                placeholder='Your Email' 
+                placeholder='Your Full Name' 
                 name="email"
                 type="text"
                 // value={formValues.email}

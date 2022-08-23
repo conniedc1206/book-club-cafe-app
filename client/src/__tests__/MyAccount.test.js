@@ -1,44 +1,45 @@
+// import dependencies
 import React from 'react'
-import "@testing-library/jest-dom";
-//render: lets us render the component as React would, screen: a utility for finding elements the same way the user does
-import {render, screen} from '@testing-library/react' 
+import { MemoryRouter } from 'react-router-dom';
+// import API mocking utilities from Mock Service Worker
+// import {rest} from 'msw'
+// import {setupServer} from 'msw/node'
+// import react-testing methods
+import {render, fireEvent, waitFor, screen} from '@testing-library/react'
 import userEvent from "@testing-library/user-event";
+// add custom jest matchers from jest-dom
+import '@testing-library/jest-dom'
+// the component to test
 import MyAccount from '../components/MyAccount'
+import NavBar from '../components/NavBar'
+import Home from '../components/Home'
 
-//writing a test block:
-//render a component to test
-//find elements we want to interact with
-//interact with those elements
-//assert that the results are as expected
-
-test("renders without any errors", () => {
-    const errorSpy = jest.spyOn(global.console, "error");
-    render(<MyAccount />);
-    expect(errorSpy).not.toHaveBeenCalled();
-    errorSpy.mockRestore();
+// For the Navbar, we need to test that the links are pointing to the correct target.
+describe('NavBar', () => {
+    test('"Explore" link points to the correct page', () => {
+        render(
+            <MemoryRouter>
+              <NavBar />
+            </MemoryRouter>
+        );
+        const link = screen.getByRole('link', { name: /explore/i });
+        // screen.debug(link);
+        userEvent.click(link);
+        // After clicking the link we expect to see a url with "/home".
+        expect(link.getAttribute('href')).toBe('/home');
+    });
 });
 
-//assertion type #1: is this element in the document?
-//renders 'Edit Profile'
-test("renders 'Edit Profile' in header", () => {
-    render(<MyAccount />);
-    // you can render the component first and then debug what's visible for RTL's renderer in the test
-    // screen.debug();
-    const headingEl = screen.getByText(/Edit Profile/)
-    expect(headingEl).toBeInTheDocument();
-})
-
-//renders NavBar
-
-//form: Input texts must have correct value
-
-
-//test button
-test("renders update button", () => {
-    render(<MyAccount />);
-    const buttonEl = screen.getByText(/Update/);
-    screen.debug();
-      
-    userEvent.click(buttonEl);
-    expect(buttonEl).toBeInTheDocument();
+// For the form, we should test changing and submitting the form, the loading state, and the rendered response.
+// The user enters a value in the form's input and submits.
+// When the response arrives the data is rendered.
+describe('Form', () => {
+    test('form inputs', () => {
+        render(
+            <MemoryRouter>
+              <MyAccount />
+            </MemoryRouter>
+        );
+        screen.debug()
+    });
 });
