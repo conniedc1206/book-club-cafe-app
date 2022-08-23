@@ -18,6 +18,7 @@ class AttendancesController < ApplicationController
 
     # user clicks no to an event
     # DELETE /attendances/:id
+    # if record not found, error will render from app controller
     def destroy
         attendance = Attendance.find(params[:id])
         attendance.destroy

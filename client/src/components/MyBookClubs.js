@@ -19,16 +19,19 @@ const MyBookClubs = ({currentUser, userBookClubs, deleteUserBookClub}) => {
     //state for events of user
     const [userEvents, setUserEvents] = useState([])
 
-    // set user's events
+    // fetch the events of the user once
     useEffect(() => {
-      if (currentUser) {
-        setUserEvents(currentUser.events)
-      }
-    }, [currentUser]);
+      fetch("/myevents")
+      .then(res => res.json())
+      .then(events => setUserEvents(events))
+    }, []);
 
     // callback functions for events CRUD
     const addUserEvent = (newEvent) => setUserEvents(events => [...events, newEvent])
-    // const deleteUserEvent = (id) => setUserEvents(events => events.filter(event => event.id !== id)) 
+    const deleteUserEvent = (id) => setUserEvents(events => events.filter(event => event.id !== id)) 
+
+    console.log(userEvents)
+    console.log(currentUser.events)
 
     // sort userEvents before mapping
     const sortedUserEvents = userEvents?.sort(function (x, y) {
@@ -56,9 +59,9 @@ const MyBookClubs = ({currentUser, userBookClubs, deleteUserBookClub}) => {
             
             {/* container for list of book clubs that user joined */}
             <Typography m={2} sx={{ textAlign: 'center', fontSize: 24 }}>My Book Clubs</Typography>
-            {userBookClubs.map((club) => (
+            {userBookClubs?.map((club) => (
               <Grid xs={6} md={8} key={club.id}>
-                <ClubEventCard club={club} deleteUserBookClub={deleteUserBookClub} currentUser={currentUser} addUserEvent={addUserEvent}/>
+                <ClubEventCard club={club} deleteUserBookClub={deleteUserBookClub} currentUser={currentUser} addUserEvent={addUserEvent} deleteUserEvent={deleteUserEvent}/>
               </Grid>
             ))}
           </Grid>

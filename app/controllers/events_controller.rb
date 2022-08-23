@@ -4,6 +4,12 @@ class EventsController < ApplicationController
         render json: events, status: :ok
     end
 
+    # GET "/events/:id"
+    def show
+        event = Event.find(params[:id])
+        render json: event, status: :ok
+    end
+
     def create
         event = Event.create!(event_params)
         render json: event, status: :created

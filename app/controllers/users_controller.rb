@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     # GET "/users/:id"
     def show
         user = User.find(params[:id])
-        render json: user, status: :ok
+        render json: user.events, status: :ok
     end
 
     # POST "/users": Fetch this route to create a user (see user_params to know what's required in the form)

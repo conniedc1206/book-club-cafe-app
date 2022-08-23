@@ -21,7 +21,7 @@ const theme = createTheme({
 
 function App() {
   // set our logged in user with login or signup
-  const [currentUser, setCurrentUser] = useState(false) 
+  const [currentUser, setCurrentUser] = useState([]) 
   //state for bookclubs of current user
   const [userBookClubs, setUserBookClubs] = useState([])
 
@@ -34,6 +34,8 @@ function App() {
       setUserBookClubs(user.book_clubs)
     })
   }, []);
+
+  console.log(currentUser)
 
 // callback functions for membership CRUD
   const addUserBookClub = (newBookClub) => setUserBookClubs(bookclubs => [...bookclubs, newBookClub])
