@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate,  Link as RouterLink } from 'react-router-dom'
-import { Grid, Paper, TextField, Button, Typography, Box, AppBar, Toolbar, IconButton, InputAdornment  } from '@mui/material'
+import { Grid, Paper, TextField, Button, Typography, Box, AppBar, Toolbar, IconButton, InputAdornment, Alert  } from '@mui/material'
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import PersonIcon from '@mui/icons-material/Person';
@@ -34,7 +34,6 @@ const Signup = ({setCurrentUser}) => {
           ...formValues,
           [name]: value,
         });
-        console.log(formValues)
       };
     
     function handleSubmit(e){
@@ -150,6 +149,7 @@ const Signup = ({setCurrentUser}) => {
                         fullWidth 
                         required
                         />
+                    { errors.length === 0 ? null: <Alert severity="error">{errors[0][1]}</Alert> }
                     <Button 
                         type='submit' 
                         color='primary' 
@@ -160,7 +160,7 @@ const Signup = ({setCurrentUser}) => {
                         SIGN UP
                     </Button>
                     <Typography component={RouterLink} to="/"> Already have an account?</Typography>
-                    <Typography>{errors}</Typography>
+            
                 </form>
             </Paper>
         </Grid>

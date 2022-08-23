@@ -29,7 +29,7 @@ const Home = ({currentUser, addUserBookClub, userBookClubs}) => {
       <NavBar currentUser={currentUser}/>
       <CarouselContainer />
       <Box sx={{ flexGrow: 1 }}>
-        <Typography m={2} sx={{ textAlign: 'center', fontSize: 24 }}>Join A New Book Club!</Typography>
+        <Typography aria-role='heading' m={2} sx={{ textAlign: 'center', fontSize: 24 }}>Join A New Book Club!</Typography>
         <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 16 }}>
           {filteredClubs?.map((club) => (
             <Grid xs={2} sm={4} md={4} key={club.id}>

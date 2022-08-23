@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate,  Link as RouterLink } from 'react-router-dom'
-import { Grid, Paper, TextField, Button, Typography, Box, AppBar, Toolbar, IconButton, InputAdornment  } from '@mui/material'
+import { Grid, Paper, TextField, Button, Typography, Box, AppBar, Toolbar, IconButton, InputAdornment, Alert } from '@mui/material'
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import EmailIcon from '@mui/icons-material/Email';
@@ -18,6 +18,7 @@ const defaultValues = {
 const Login = ({setCurrentUser}) => {
     const [formValues, setFormValues] = useState(defaultValues);
     const [showPassword, setShowPassword] = useState(false)
+    const [error, setError] = useState(false)
 
     const navigate = useNavigate()
 
@@ -44,12 +45,7 @@ const Login = ({setCurrentUser}) => {
         body: JSON.stringify({ ...formValues }),
         };
         fetch("/login", configObj)
-        .then(res => {
-            if (res.ok) {
-                return res.json();
-            }
-            throw new Error('Incorrect Email or Password. Try Again!');
-            })
+        .then(res => res.json())
         .then((user) => {
             // set the state of the user
             setCurrentUser(user)
@@ -57,7 +53,7 @@ const Login = ({setCurrentUser}) => {
             navigate("/home")
         })
         .catch((error) => {
-        alert(error)
+            setError(true)
         })
         setFormValues(defaultValues);
     };
@@ -134,6 +130,8 @@ const Login = ({setCurrentUser}) => {
                         fullWidth 
                         required
                         />
+
+                    {error && <Alert severity="error">'Incorrect Email or Password. Try Again!'</Alert>}
                     <Button 
                         type='submit' 
                         color='primary' 
@@ -155,6 +153,7 @@ const Login = ({setCurrentUser}) => {
                         >
                         Create a new account
                     </Button>
+                    
                 </form>
             </Paper>
         </Grid>
