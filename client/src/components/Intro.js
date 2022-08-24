@@ -1,10 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link as RouterLink } from 'react-router-dom'
 import {Jumbotron, Container} from 'react-bootstrap'
-import { Typography, Box, AppBar, Toolbar, Icon, Stack, Button  } from '@mui/material'
+import { Typography, Box, AppBar, Toolbar, Icon, Stack, Button, BottomNavigation, BottomNavigationAction  } from '@mui/material'
+import GitHubIcon from '@mui/icons-material/GitHub';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import ContactMailIcon from '@mui/icons-material/ContactMail';
 
 const Intro = () => {
-  return (
+    const [value, setValue] = React.useState(0);
+
+    return (
     <>
         <Box sx={{ display: 'flex', margin:'40px 0' }}>
             <AppBar component="nav">
@@ -49,7 +54,7 @@ const Intro = () => {
 
         <br/> <br/>
 
-        <Jumbotron fluid style={{ backgroundImage: `url(https://i.imgur.com/VJYdH14.png)`, backgroundSize: 'cover' }}>
+        <Jumbotron fluid style={{ backgroundImage: `url(https://i.imgur.com/BEY23Q5.png)`, backgroundSize: 'cover' }}>
             <Container>         
             <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> 
             </Container>
@@ -57,11 +62,28 @@ const Intro = () => {
 
         <br/> <br/>
 
-        <Jumbotron fluid style={{ backgroundImage: `url(https://i.imgur.com/atWUgvd.png)`, backgroundSize: 'cover' }}>
+        <Jumbotron fluid style={{ backgroundImage: `url(https://i.imgur.com/MSnQSjS.png)`, backgroundSize: 'cover' }}>
             <Container>         
             <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> 
             </Container>
         </Jumbotron>
+
+        <br/> <br/>
+
+        <Box 
+        sx={{ justifyContent: 'space-between' }}>
+        <BottomNavigation
+        showLabels
+        value={value}
+        onChange={(event, newValue) => {
+          setValue(newValue);
+        }}
+      >
+        <BottomNavigationAction label="Github" icon={<GitHubIcon />} href="https://github.com/conniedc1206/book-club-cafe-app" target="_blank" rel="noopener noreferrer"/>
+        <BottomNavigationAction label="LinkedIn" icon={<LinkedInIcon />} href="https://www.linkedin.com/in/conniepark2/" target="_blank" rel="noopener noreferrer"/>
+        <BottomNavigationAction label="Contact" icon={<ContactMailIcon />} />
+      </BottomNavigation>
+    </Box>
 
     </>
   )
