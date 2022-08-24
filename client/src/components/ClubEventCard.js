@@ -34,6 +34,7 @@ const ClubEventCard = ({club, currentUser, deleteUserBookClub, addUserEvent, del
       method: 'DELETE'
     })
     deleteUserBookClub(club.id)
+    //if the user has an events from this club.id, delete all attendences with matching club.id and events
   };
   //sort events by dates
   const sortedEvents = club.events.sort(function (x, y) {
