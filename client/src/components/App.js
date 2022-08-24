@@ -5,6 +5,7 @@ import Home from "./Home";
 import Signup from "./Signup";
 import MyBookClubs from "./MyBookClubs"
 import MyAccount from './MyAccount';
+import Intro from './Intro';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
@@ -44,7 +45,8 @@ function App() {
   return (
       <ThemeProvider theme={theme}>
         <Routes>
-          <Route path="/" element={<Login setCurrentUser={setCurrentUser}/>} />
+          <Route path="/" element={<Intro />} />
+          <Route path="/login" element={<Login setCurrentUser={setCurrentUser}/>} />
           <Route path="signup" element={<Signup setCurrentUser={setCurrentUser} />} />
           <Route path="home" element={
             <Home 
