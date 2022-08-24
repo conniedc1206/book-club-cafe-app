@@ -1,7 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 import NavBar from './NavBar';
-import { Grid, Paper, TextField, Button, Typography, Box, AppBar, Toolbar, IconButton, InputAdornment  } from '@mui/material'
-import EmailIcon from '@mui/icons-material/Email';
+import { Grid, Paper, TextField, Button} from '@mui/material'
 
 // MUI styling:
 const paperStyle = { padding :20, height:'70vh', width:320, margin:"20px auto", textAlign: "center" }
@@ -73,15 +72,19 @@ const MyAccount = ({ currentUser }) => {
                 </Grid>
                 <TextField 
                 style={txtfieldstyle}
-                InputLabelProps={{ shrink: true }}
-                InputProps={{
-                startAdornment: (
-                    <InputAdornment position="start">
-                        <EmailIcon />
-                    </InputAdornment>
-                )}}
-                id="email"
+                id="name"
                 placeholder='Your Full Name' 
+                name="name"
+                type="text"
+                // value={formValues.name}
+                // onChange={handleChange} 
+                fullWidth 
+                />
+
+                <TextField 
+                style={txtfieldstyle}
+                id="email"
+                placeholder='Your Email' 
                 name="email"
                 type="text"
                 // value={formValues.email}
@@ -91,18 +94,22 @@ const MyAccount = ({ currentUser }) => {
 
                 <TextField 
                 style={txtfieldstyle}
-                InputLabelProps={{ shrink: true }}
-                InputProps={{
-                startAdornment: (
-                    <InputAdornment position="start">
-                        <EmailIcon />
-                    </InputAdornment>
-                )}}
-                id="email"
-                placeholder='Your Email' 
-                name="email"
+                id="bio"
+                placeholder='Your Bio' 
+                name="bio"
                 type="text"
-                // value={formValues.email}
+                // value={formValues.bio}
+                // onChange={handleChange} 
+                fullWidth 
+                />
+
+                <TextField 
+                style={txtfieldstyle}
+                id="avatar"
+                placeholder='Your Profile Picture' 
+                name="avatar"
+                type="text"
+                // value={formValues.avatar}
                 // onChange={handleChange} 
                 fullWidth 
                 />
