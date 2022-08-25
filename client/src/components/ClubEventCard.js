@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import EventCard from './EventCard';
-import { Typography, Paper, Button } from '@mui/material';
+import { Typography, Paper, Button, Modal, Box } from '@mui/material';
 import { experimentalStyled as styled } from '@mui/material/styles';
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -11,8 +11,37 @@ const Item = styled(Paper)(({ theme }) => ({
     color: theme.palette.text.secondary,
 }));
 
-const ClubEventCard = ({club, currentUser, deleteUserBookClub, addUserEvent, deleteUserEvent}) => {
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
+
+const ClubEventCard = ({club, currentUser, userEvents, deleteUserBookClub, addUserEvent, deleteUserEvent}) => {
   const [allMemberships, setAllMemberships] = useState([])
+  const [allAttendances, setAllAttendances] = useState([])
+
+  // requesting all attendances
+  useEffect(() => {
+    fetch("/attendances")
+    .then(res => res.json())
+    .then(attendances => setAllAttendances(attendances))
+  }, []);
+  // console.table(allAttendances)
+
+  let associatedAttendances = allAttendances?.filter((obj) => obj.event.book_club.id === 11 && obj.user.id === 11)
+  console.log(associatedAttendances)
+
+  // delete button
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   let today = new Date().toLocaleDateString()
 
@@ -23,7 +52,7 @@ const ClubEventCard = ({club, currentUser, deleteUserBookClub, addUserEvent, del
     .then(memberships => setAllMemberships(memberships))
   }, []);
 
-  //DELETE
+  //Leave book club
   function handleDeleteClick () {
     // find the membership obj where clicked club's id=club id
     // deletebookclub from userbookclub state
@@ -34,8 +63,16 @@ const ClubEventCard = ({club, currentUser, deleteUserBookClub, addUserEvent, del
       method: 'DELETE'
     })
     deleteUserBookClub(club.id)
-    //if the user has an events from this club.id, delete all attendences with matching club.id and events
+    //map through the associatedAttendances and make a fetch request for each to delete in the backend
+    associatedAttendances.map(attendanceToDelete => (
+      fetch(`/attendances/${attendanceToDelete.id}`, {
+            method: 'DELETE'
+          })
+    )) 
   };
+
+  console.log(allAttendances)
+
   //sort events by dates
   const sortedEvents = club.events.sort(function (x, y) {
     let a = new Date(x.date),
@@ -54,14 +91,26 @@ const ClubEventCard = ({club, currentUser, deleteUserBookClub, addUserEvent, del
           />
         </a>
         <Typography>{club.club_name}: {club.title}</Typography>
-        
-        {/* render each book club's events in a stack with a RSVP button */}
         {/* once user rsvp to event, will appear in "your upcoming events" box on top */}
         {/* ONLY render events that are in the future compared to today, not in the past */}
-        {sortedEvents.map((event) => ( (event.date) <= today ? <EventCard key={event.id} event={event} currentUser={currentUser} addUserEvent={addUserEvent} deleteUserEvent={deleteUserEvent}/> : null )) }
-        <Button sx={{ mt:3 }} size="medium" color="secondary" variant="contained" onClick={handleDeleteClick}>
-              LEAVE THIS BOOK CLUB
+        {sortedEvents.map((event) => ( (event.date) <= today ? <EventCard key={event.id} event={event} currentUser={currentUser} addUserEvent={addUserEvent} deleteUserEvent={deleteUserEvent} allAttendances={allAttendances}/> : null )) }
+        <Button sx={{ mt:3 }} size="medium" color="secondary" variant="contained" onClick={handleOpen}>
+          LEAVE THIS BOOK CLUB
         </Button>
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style} textAlign='center' borderRadius={2} p={8}>
+            <Typography id="modal-modal-title" variant="h7" component="h2">
+              Are you sure you want to leave this book club?
+            </Typography>
+            <Button sx={{ margin: 2 }} variant="outlined" onClick={handleDeleteClick}>Yes</Button>
+            <Button sx={{ margin: 2 }} variant="outlined" onClick={handleClose}>No</Button>
+          </Box>
+        </Modal>
     </Item>
   )
 }

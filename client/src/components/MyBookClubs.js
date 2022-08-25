@@ -3,16 +3,16 @@ import Moment from 'react-moment';
 import NavBar from './NavBar';
 import ClubEventCard from './ClubEventCard';
 import Grid from '@mui/material/Unstable_Grid2';
-import { Typography, Box, Paper} from '@mui/material';
+import { Typography, Box, Paper } from '@mui/material';
 import { experimentalStyled as styled } from '@mui/material/styles';
 
 const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: 'yellow',
+    backgroundColor: '#00838f',
     ...theme.typography.body2,
-    padding: theme.spacing(3),
+    padding: 8,
     textAlign: 'center',
-    color: theme.palette.text.secondary,
-    variant:"outlined",
+    color: 'white',
+    border: "4px solid white",
 }));
 
 const MyBookClubs = ({currentUser, userBookClubs, deleteUserBookClub}) => {
@@ -30,11 +30,17 @@ const MyBookClubs = ({currentUser, userBookClubs, deleteUserBookClub}) => {
     const addUserEvent = (newEvent) => setUserEvents(events => [...events, newEvent])
     const deleteUserEvent = (id) => setUserEvents(events => events.filter(event => event.id !== id)) 
 
-    console.log(userEvents)
-    console.log(currentUser.events)
+    //only map through events from bookclubs in userBookClubs
+    let userBookClubIds = []
+    const pluck = (arr, key) => arr.map(i => i[key]);
+    userBookClubIds = pluck(userBookClubs, 'id')
+    // console.log(userBookClubIds)
+    let userFilteredEvents = []
+    userFilteredEvents = userEvents.filter((item) => userBookClubIds.includes(item.book_club.id))
+    console.log(userFilteredEvents)
 
     // sort userEvents before mapping
-    const sortedUserEvents = userEvents?.sort(function (x, y) {
+    const sortedUserEvents = userFilteredEvents.sort(function (x, y) {
       let a = new Date(x.date),
           b = new Date(y.date);
       return a - b;
@@ -43,7 +49,7 @@ const MyBookClubs = ({currentUser, userBookClubs, deleteUserBookClub}) => {
     
     return (
     <>
-        <NavBar />
+        <NavBar currentUser={currentUser}/>
         <Box sx={{ display: 'flex', p: 1, bgcolor: 'background.paper', borderRadius: 1 }}>
           <Grid sx={{ flexGrow: 1, margin: 1 }}>
             {/* container for list events that user joined */}
@@ -54,6 +60,7 @@ const MyBookClubs = ({currentUser, userBookClubs, deleteUserBookClub}) => {
                   <Typography>{event.book_club.club_name}: {event.name}</Typography>
                   <Moment>{event.date}</Moment>
                 </Item>
+                
               ))}
             </Grid>
             
@@ -61,7 +68,7 @@ const MyBookClubs = ({currentUser, userBookClubs, deleteUserBookClub}) => {
             <Typography m={2} sx={{ textAlign: 'center', fontSize: 24 }}>My Book Clubs</Typography>
             {userBookClubs?.map((club) => (
               <Grid xs={6} md={8} key={club.id}>
-                <ClubEventCard club={club} deleteUserBookClub={deleteUserBookClub} currentUser={currentUser} addUserEvent={addUserEvent} deleteUserEvent={deleteUserEvent}/>
+                <ClubEventCard club={club} userEvents={userEvents} deleteUserBookClub={deleteUserBookClub} currentUser={currentUser} addUserEvent={addUserEvent} deleteUserEvent={deleteUserEvent}/>
               </Grid>
             ))}
           </Grid>
