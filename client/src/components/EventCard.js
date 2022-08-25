@@ -2,17 +2,9 @@ import React, { useState, useEffect } from 'react'
 import Moment from 'react-moment';
 import { Box, InputLabel, MenuItem, FormControl, Select } from '@mui/material';
 
-const EventCard = ({event, currentUser, addUserEvent, deleteUserEvent}) => {
+const EventCard = ({event, currentUser, addUserEvent, deleteUserEvent, allAttendances}) => {
   const [RSVP, setRSVP] = useState('');
-  const [allAttendances, setAllAttendances] = useState([])
 
-  // requesting all attendances
-  useEffect(() => {
-    fetch("/attendances")
-    .then(res => res.json())
-    .then(attendances => setAllAttendances(attendances))
-  }, []);
-  // console.table(allAttendances)
 
   //requesting attendances of this specific event
   useEffect(() => {

@@ -36,8 +36,6 @@ function App() {
     })
   }, []);
 
-  console.log(currentUser)
-
 // callback functions for membership CRUD
   const addUserBookClub = (newBookClub) => setUserBookClubs(bookclubs => [...bookclubs, newBookClub])
   const deleteUserBookClub = (id) => setUserBookClubs(current => current.filter(p => p.id !== id)) 
