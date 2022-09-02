@@ -20,11 +20,11 @@ Book Club Cafe is an React/Rails book app that allows users to join book clubs a
 - Github
 
 ## Goals
-Our goal was to build a React/Ruby on Rails application within 3 weeks following this project schedule:
+My goal was to build a React/Ruby on Rails application within 3 weeks following this project schedule:
 * Week 1: Plan an idea, deliver an intial pitch, present a project proposal to a project manager (our instructor), 
 * Week 2: MVP presentation with project manager
 * Week 3: Complete project and prepare for final project presentation 
-* Also completed daily and weekly check-ins with fellow cohort-mates and instructor
+* Also complete daily and weekly check-ins with fellow classmates and instructor
 
 ## Accomplishments
 * For my Rails backend:
