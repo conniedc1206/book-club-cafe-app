@@ -3,7 +3,7 @@
 
 ## Description
 
-Whiskker is a React/Rails social network application that helps cat users build a community with other cats, share their lives with Meow Posts, and communicate with one another using Meow Mail.
+Book Club Cafe is an React/Rails book app that allows users to join book clubs and enjoy reading books together and attend discussion events with fellow book club members.
 
 ## Technologies/Skills
 
