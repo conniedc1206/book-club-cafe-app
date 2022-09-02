@@ -20,33 +20,39 @@ Whiskker is a React/Rails social network application that helps cat users build 
 - Github
 
 ## Goals
-Our goal was to build a React/Ruby on Rails application while simulating a professional work environment by:
-* planning out our user stories, domain models, wireframes and features
-* pitching our app in a project proposal
-* using Github for our source control system to track code changes and collaborate with team
-* building a full-stack application using a Rails API backend with a React frontend
-* implementing authentication/authorization, including password protection
-* utilizing Material UI for our CSS styling
+Our goal was to build a React/Ruby on Rails application within 3 weeks following this project schedule:
+* Week 1: Plan an idea, deliver an intial pitch, present a project proposal to a project manager (our instructor), 
+* Week 2: MVP presentation with project manager
+* Week 3: Complete project and prepare for final project presentation 
+* Also completed daily and weekly check-ins with fellow cohort-mates and instructor
 
 ## Accomplishments
-* Complete our MVP of this larger-scale social network application in a short time frame (from ideation to MVP, we had 7 days)
-    * created a work timeline focused on adding feature by feature (testing each feature, add styles)
-    * we focused on prioritizing our MVP features
-* For our Rails backend:
-    * self-referential table
-    * 
-* For our React frontend:
-    * mobile first design
-    * 
-* Organized our code into purposeful components in order to keep it drywork
-* Incorporated a UI framework for our styling with Material UI
-    * Responsive design for both desktop and mobile devices
+* For my Rails backend:
+    * Auth
+    * Multiple has_many_through relationships
+    * Seeds from a complex data set
+    * Custom routes
+    * Custom controller/model methods
+    * Validation
+* For my React frontend:
+    * Auth
+    * Tests
+    * Interacting with a complex API
+    * Custom CSS with Material UI
+    * Responsive web design
+* Organized my code into purposeful components in order to keep it drywork
 * Deployed application using Heroku
 
-## Challenges/Future Improvements
-* Further understanding of self-referential associations on the back-end and front-end
-* Custom verifications
-* Fetch requests
+## Challenges
+* Learning and implementing TDD
+* Implementing responsive design
+* Accessing book data from API
+
+## Future Improvements
+* Different type of users: teachers, students, etc.
+* Discussion threads during live events
+* Monthly calendar to display upcoming events
+* Integrating Active Storage for uploads
 
 ## Avaliable Scripts
 * Environment Setup
