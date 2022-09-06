@@ -36,7 +36,7 @@ const ClubEventCard = ({club, currentUser, userEvents, deleteUserBookClub, addUs
   // console.table(allAttendances)
 
   let associatedAttendances = allAttendances?.filter((obj) => obj.event.book_club.id === 11 && obj.user.id === 11)
-  console.log(associatedAttendances)
+  // console.log(associatedAttendances)
 
   // delete button
   const [open, setOpen] = useState(false);
@@ -71,7 +71,7 @@ const ClubEventCard = ({club, currentUser, userEvents, deleteUserBookClub, addUs
     )) 
   };
 
-  console.log(allAttendances)
+  // console.log(allAttendances)
 
   //sort events by dates
   const sortedEvents = club.events.sort(function (x, y) {
