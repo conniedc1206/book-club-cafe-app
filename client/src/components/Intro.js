@@ -46,29 +46,23 @@ const Intro = () => {
             </AppBar>
         </Box>
 
-        <Jumbotron fluid style={{ backgroundImage: `url(https://i.imgur.com/HJnlvq0.png)`, backgroundSize: 'cover' }}>
+        <Jumbotron fluid style={{ backgroundImage: `url(https://i.imgur.com/HJnlvq0.png)`, backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}>
             <Container>         
             <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> 
             </Container>
         </Jumbotron>
 
-        <br/> <br/>
-
-        <Jumbotron fluid style={{ backgroundImage: `url(https://i.imgur.com/BEY23Q5.png)`, backgroundSize: 'cover' }}>
+        <Jumbotron fluid style={{ backgroundImage: `url(https://i.imgur.com/KdJbm1Q.png)`, backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}>
             <Container>         
             <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> 
             </Container>
         </Jumbotron>
-
-        <br/> <br/>
-
-        <Jumbotron fluid style={{ backgroundImage: `url(https://i.imgur.com/MSnQSjS.png)`, backgroundSize: 'cover' }}>
+{/* 
+        <Jumbotron fluid style={{ backgroundImage: `url(https://i.imgur.com/X8F8rgy.png)`, backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}>
             <Container>         
             <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> 
             </Container>
-        </Jumbotron>
-
-        <br/> <br/>
+        </Jumbotron> */}
 
         <Box 
         sx={{ justifyContent: 'space-between' }}>

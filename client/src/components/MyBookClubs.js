@@ -18,6 +18,7 @@ const Item = styled(Paper)(({ theme }) => ({
 const MyBookClubs = ({currentUser, userBookClubs, deleteUserBookClub}) => {
     //state for events of user
     const [userEvents, setUserEvents] = useState([])
+    console.log(currentUser)
 
     // fetch the events of the user once
     useEffect(() => {
@@ -37,7 +38,6 @@ const MyBookClubs = ({currentUser, userBookClubs, deleteUserBookClub}) => {
     // console.log(userBookClubIds)
     let userFilteredEvents = []
     userFilteredEvents = userEvents.filter((item) => userBookClubIds.includes(item.book_club.id))
-    console.log(userFilteredEvents)
 
     // sort userEvents before mapping
     const sortedUserEvents = userFilteredEvents.sort(function (x, y) {
