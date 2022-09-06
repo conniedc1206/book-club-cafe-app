@@ -5,6 +5,8 @@
 
 Book Club Cafe is an React/Rails book app that allows users to join book clubs, enjoy reading books together and attend discussion events with fellow book club members.
 
+Demo: Coming soon!
+
 ## Technologies/Skills
 
 - React.js
