@@ -4,14 +4,11 @@ Rails.application.routes.draw do
   resources :memberships, only: [:index, :create, :destroy]
   resources :events, only: [:index, :show, :create, :destroy]
   resources :attendances, only: [:index, :create, :destroy]
-  
-
   # custom routes
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
   get "/me", to: "sessions#show"
   get "/myevents", to: "sessions#myevents"
-
 
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!
