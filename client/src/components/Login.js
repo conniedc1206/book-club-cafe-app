@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate,  Link as RouterLink } from 'react-router-dom'
-import { Grid, Paper, TextField, Button, Typography, Box, AppBar, Toolbar, IconButton, InputAdornment, Alert } from '@mui/material'
+import { Grid, Paper, TextField, Button, Typography, Box, AppBar, Toolbar, IconButton, InputAdornment, Alert, Link, Icon } from '@mui/material'
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import EmailIcon from '@mui/icons-material/Email';
+import icon from '../images/mediumfantasyicon.png';
 
 // MUI styling:
 const paperStyle={padding :20, height:'70vh', width:320, margin:"20px auto", textAlign: "center", boxShadow: "4px 4px 4px rgba(0, 0, 0, 0.25)", borderRadius: "25px"}
@@ -73,13 +74,14 @@ const Login = ({setCurrentUser}) => {
             <Box sx={{ display: 'flex', margin:'40px 0' }}>
                 <AppBar component="nav">
                     <Toolbar>
-                        <Typography
-                        variant="h6"
-                        component="div"
-                        sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
-                        >
-                        Book Club Cafe
-                        </Typography>
+                        <Icon component={RouterLink} to="/" sx={{ display: { xs: 'flex', md: 'flex' }, mr: 1 }}>
+                            <img src={icon} alt="icon"/>
+                        </Icon>
+                        <Link underline="none">
+                            <Typography variant="h6" color='white'>
+                            Book Club Cafe
+                            </Typography>
+                        </Link>
                     </Toolbar>
                 </AppBar>
             </Box>

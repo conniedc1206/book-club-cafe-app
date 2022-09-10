@@ -44,7 +44,7 @@ function App() {
       <ThemeProvider theme={theme}>
         <Routes>
           <Route path="/" element={<Intro />} />
-          <Route path="/login" element={<Login setCurrentUser={setCurrentUser}/>} />
+          <Route path="login" element={<Login setCurrentUser={setCurrentUser}/>} />
           <Route path="signup" element={<Signup setCurrentUser={setCurrentUser} />} />
           <Route path="home" element={
             <Home 
