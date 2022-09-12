@@ -88,7 +88,7 @@ const Login = ({setCurrentUser}) => {
             <Paper elevation={10} style={paperStyle}>
                 <form onSubmit={handleSubmit}>
                     <Grid align='center'>
-                        <img src="/mediumfantasyicon.png" alt="icon" />
+                        <img src="https://i.imgur.com/lbM7ksJ.png" alt="medium_icon"/>
                         <h2>Welcome Back!</h2>
                     </Grid>
                     <TextField 
