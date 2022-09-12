@@ -51,7 +51,7 @@ My goal was to build a React/Ruby on Rails application within 3 weeks following 
 * Accessing book data from API
 
 ## Future Improvements
-* Different type of users: teachers, students, etc.
+* Different types of users: teachers, students, etc.
 * Discussion threads during live events
 * Monthly calendar to display upcoming events
 * Integrating Active Storage for uploads
