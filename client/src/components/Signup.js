@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate,  Link as RouterLink } from 'react-router-dom'
-import { Grid, Paper, TextField, Button, Typography, Box, AppBar, Toolbar, IconButton, InputAdornment, Alert  } from '@mui/material'
+import { Grid, Paper, TextField, Button, Typography, Box, AppBar, Toolbar, IconButton, InputAdornment, Alert, Icon  } from '@mui/material'
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import PersonIcon from '@mui/icons-material/Person';
 import EmailIcon from '@mui/icons-material/Email';
+import icon from '../images/mediumfantasyicon.png';
 
 // MUI styling:
 const paperStyle={padding :20, height:'70vh', width:320, margin:"20px auto", textAlign: "center", boxShadow: "4px 4px 4px rgba(0, 0, 0, 0.25)", borderRadius: "25px"}
@@ -73,6 +74,9 @@ const Signup = ({setCurrentUser}) => {
             <Box sx={{ display: 'flex', margin:'40px 0' }}>
                 <AppBar component="nav">
                     <Toolbar>
+                        <Icon component={RouterLink} to="/" sx={{ display: { xs: 'flex', md: 'flex' }, mr: 1 }}>
+                            <img src={icon} alt="icon"/>
+                        </Icon>
                         <Typography
                         variant="h6"
                         component="div"
