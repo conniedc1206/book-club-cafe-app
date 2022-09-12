@@ -15,18 +15,18 @@ const IntroAboutUs = () => {
 
         <Grid item xs={12} md={6}>
           <Typography variant="h3" fontWeight={700} className={classes.title}>
-            We build, We revive
+            About
           </Typography>
           <Typography className={classes.aboutUsSubtitle}>
-            Your business needs to be in safe hands at all times. We ensure you
-            never run out of customers and not run at loss. We are trusted by
-            over 500+ companies to deliver quality marketing campaigns using
-            Digital marketing & Offline marketing channels.
+            Book Club Cafe was built using React.js on the frontend and Ruby on Rails on the backend. Learn more about the features, challenges, and future improvements of this app by visiting the Github link below. 
           </Typography>
           <Button
             variant="contained"
             color="primary"
             sx={{ width: '200px', fontSize: '16px', marginRight: '20px' }}
+            href="https://github.com/conniedc1206/book-club-cafe-app"
+            target="_blank" 
+            rel="noopener noreferrer"
           >
             Github
           </Button>
@@ -35,6 +35,9 @@ const IntroAboutUs = () => {
             variant="contained"
             color="primary"
             sx={{ width: '200px', fontSize: '16px' }}
+            href="https://www.linkedin.com/in/conniepark2/"
+            target="_blank" 
+            rel="noopener noreferrer"
           >
             LinkedIn
           </Button>
