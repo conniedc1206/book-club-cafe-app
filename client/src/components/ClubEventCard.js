@@ -93,7 +93,8 @@ const ClubEventCard = ({club, currentUser, userEvents, deleteUserBookClub, addUs
         <Typography>{club.club_name}: {club.title}</Typography>
         {/* once user rsvp to event, will appear in "your upcoming events" box on top */}
         {/* ONLY render events that are in the future compared to today, not in the past */}
-        {sortedEvents.map((event) => ( (event.date) <= today ? <EventCard key={event.id} event={event} currentUser={currentUser} addUserEvent={addUserEvent} deleteUserEvent={deleteUserEvent} allAttendances={allAttendances}/> : null )) }
+        {/* {sortedEvents.map((event) => ( (event.date) <= today ? <EventCard key={event.id} event={event} currentUser={currentUser} addUserEvent={addUserEvent} deleteUserEvent={deleteUserEvent} allAttendances={allAttendances}/> : null )) } */}
+        {sortedEvents.map((event) => <EventCard key={event.id} event={event} currentUser={currentUser} addUserEvent={addUserEvent} deleteUserEvent={deleteUserEvent} allAttendances={allAttendances}/> )}
         <Button sx={{ mt:3 }} size="medium" color="secondary" variant="contained" onClick={handleOpen}>
           LEAVE THIS BOOK CLUB
         </Button>

@@ -5,6 +5,8 @@ import { Box, InputLabel, MenuItem, FormControl, Select } from '@mui/material';
 const EventCard = ({event, currentUser, addUserEvent, deleteUserEvent, allAttendances}) => {
   const [RSVP, setRSVP] = useState('');
 
+  console.log(event)
+
 
   //requesting attendances of this specific event
   useEffect(() => {
@@ -19,7 +21,7 @@ const EventCard = ({event, currentUser, addUserEvent, deleteUserEvent, allAttend
        setRSVP('')
       }
     })
-  }, []);
+  });
 
   //current user rsvp YES to event
   const handleRSVPYes = (e) => {
