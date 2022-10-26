@@ -5,14 +5,16 @@
 
 Book Club Cafe is an React/Rails book app that allows users to join book clubs, enjoy reading books together and attend discussion events with fellow book club members.
 
-Demo: Coming soon!
+Demo: https://book-club-cafe-app.herokuapp.com/
+Guest email: demo@gmail.com / Guest password: demo
 
 ## Technologies/Skills
 
-- React.js
-- Ruby on Rails
+- React.js 17.0.2
+- Ruby 2.7.4
+- Rails 6.1.3
 - Test Driven Development with React Testing Library and Jest
-- Heroku CLI
+- Heroku-20
 - Postgresql
 - Object-Oriented Design
 - Domain Modeling
